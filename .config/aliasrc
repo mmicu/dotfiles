@@ -1,0 +1,30 @@
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+
+# docker
+alias dp="docker ps"
+alias di="docker images"
+
+# docker-compose
+alias dcd="docker-compose down"
+alias dcu="docker-compose up"
+alias dcdu="docker-compose down && docker-compose up"
+
+# nvim
+alias vi=nvim
+alias vim=nvim
+
+# ls
+# ternary  [[ $b = 5 ]] && a="$c" || a="$d"
+if [[ -x "$(command -v exa)" ]]; then
+    echo ""
+else
+    echo ""
+fi
+
+# git
+
+
+# Other
+alias c="clear"
