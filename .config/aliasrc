@@ -12,6 +12,7 @@ alias dcu="docker-compose up"
 alias dcdu="docker-compose down && docker-compose up"
 
 # nvim
+alias v=nvim
 alias vi=nvim
 alias vim=nvim
 
@@ -25,6 +26,8 @@ fi
 
 # git
 
-
 # Other
 alias c="clear"
+
+# Additional aliases based on the machine
+[ -f "${XDG_CONFIG_HOME}/local-aliasrc" ] && source "${XDG_CONFIG_HOME}/local-aliasrc"

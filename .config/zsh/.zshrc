@@ -22,7 +22,10 @@ _comp_options+=(globdots)    # Include hidden files
 
 # vi mode
 bindkey -v
+bindkey '^R' history-incremental-search-backward
 export KEYTIMEOUT=1
 
 # Plugins
-source ./plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null
+source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh         2> /dev/null
+source $ZDOTDIR/plugins/pass-zsh-completion/pass-zsh-completion.plugin      2> /dev/null

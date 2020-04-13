@@ -4,3 +4,6 @@
 [submodule ".config/zsh/plugins/pass-zsh-completion"]
 	path = .config/zsh/plugins/pass-zsh-completion
 	url = https://github.com/ninrod/pass-zsh-completion.git
+[submodule ".config/zsh/plugins/zsh-autosuggestions"]
+	path = .config/zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
