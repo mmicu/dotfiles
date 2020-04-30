@@ -5,6 +5,11 @@ PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magent
 # autocd
 setopt autocd
 
+# Turn off all beeps
+unsetopt BEEP
+# Turn off autocomplete beeps
+unsetopt LIST_BEEP
+
 # History
 HISTSIZE=10000
 SAVEHIST=10000
