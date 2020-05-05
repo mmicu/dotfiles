@@ -25,6 +25,16 @@ else
 fi
 
 # git
+alias ga="git add"
+alias ga="git branch"
+alias gc="git commit"
+alias gcm="git commit -m"
+alias gt="git tag"
+alias gun="git config user.name"
+alias gue="git config user.email"
+
+# tmux
+alias tka="tmux kill-server"
 
 # Other
 alias c="clear"
