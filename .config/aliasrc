@@ -1,7 +1,3 @@
-# Navigation
-alias ..='cd ..'
-alias ...='cd ../..'
-
 # docker
 alias dp="docker ps"
 alias di="docker images"
@@ -11,34 +7,40 @@ alias dcd="docker-compose down"
 alias dcu="docker-compose up"
 alias dcdu="docker-compose down && docker-compose up"
 
+# ls
+if [[ -x "$(command -v exa)" ]]; then
+    alias l="exa -al --color=always --group-directories-first"
+    alias ll="exa -al --color=always --group-directories-first"
+    alias ls="exa -a --color=always --group-directories-first"
+else
+    alias l="ls -aFGhl"
+    alias ll="ls -aFGhl"
+    alias ls="ls -FGhlS"
+fi
+
+# git
+alias ga="git add"
+alias gb="git branch"
+alias gc="git commit"
+alias gcm="git commit -m"
+alias gp="git push"
+alias gt="git tag"
+alias gun="git config user.name"
+alias gue="git config user.email"
+
 # nvim
 alias v=nvim
 alias vi=nvim
 alias vim=nvim
 
-# ls
-# ternary  [[ $b = 5 ]] && a="$c" || a="$d"
-if [[ -x "$(command -v exa)" ]]; then
-    echo ""
-else
-    echo ""
-fi
-
-# git
-alias ga="git add"
-alias ga="git branch"
-alias gc="git commit"
-alias gcm="git commit -m"
-alias gt="git tag"
-alias gun="git config user.name"
-alias gue="git config user.email"
-
 # tmux
 alias tka="tmux kill-server"
 
 # Other
-alias c="clear"
+alias ..='cd ..'
+alias ...='cd ../..'
 alias beep="for i in {0..5}; do echo -ne '\007'; sleep 1; done"
+alias c="clear"
 
 # Additional aliases based on the machine
 [ -f "${XDG_CONFIG_HOME}/local-aliasrc" ] && source "${XDG_CONFIG_HOME}/local-aliasrc"
