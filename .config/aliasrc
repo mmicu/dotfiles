@@ -21,9 +21,12 @@ fi
 # git
 alias ga="git add"
 alias gb="git branch"
-alias gc="git commit"
+alias gce="git clone"
+alias gct="git commit"
 alias gcm="git commit -m"
-alias gp="git push"
+alias gl="git log --pretty=oneline"
+alias gpl="git pull"
+alias gph="git push"
 alias gt="git tag"
 alias gun="git config user.name"
 alias gue="git config user.email"
@@ -35,6 +38,7 @@ alias vim=nvim
 
 # tmux
 alias tka="tmux kill-server"
+alias rtmux="tmux source $HOME/.config/tmux/tmux.conf"
 
 # Other
 alias ..='cd ..'
