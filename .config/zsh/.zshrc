@@ -1,6 +1,6 @@
 # Enable colors and change prompt
 autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%} $%b "
 
 # autocd
 setopt autocd
@@ -34,3 +34,7 @@ export KEYTIMEOUT=1
 source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh         2> /dev/null
 source $ZDOTDIR/plugins/pass-zsh-completion/pass-zsh-completion.plugin      2> /dev/null
+source $ZDOTDIR/plugins/git-prompt.zsh/git-prompt.zsh                       2> /dev/null
+
+# Load theme
+source $ZDOTDIR/themes/multiline.zsh 2> /dev/null

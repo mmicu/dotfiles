@@ -7,3 +7,9 @@
 [submodule ".config/zsh/plugins/zsh-autosuggestions"]
 	path = .config/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule ".config/tmux/plugins/tpm"]
+	path = .config/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule ".config/zsh/plugins/git-prompt.zsh"]
+	path = .config/zsh/plugins/git-prompt.zsh
+	url = https://github.com/woefe/git-prompt.zsh.git

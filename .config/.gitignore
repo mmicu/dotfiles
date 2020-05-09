@@ -1,1 +1,7 @@
+# Files
 local-aliasrc
+
+# Directories
+/filezilla
+/htop
+/neofetch

@@ -1,4 +1,6 @@
-.cache/
-
+# Files
 .DS_Store
-*zcompdump*
+*.bak
+
+# Directories
+/.local/share

@@ -8,7 +8,7 @@ alias dcu="docker-compose up"
 alias dcdu="docker-compose down && docker-compose up"
 
 # ls
-if [[ -x "$(command -v exa)" ]]; then
+if [[ -x "$(command -v exa)" ]] && [[ "$USE_EXA" == "yes" ]]; then
     alias l="exa -al --color=always --group-directories-first"
     alias ll="exa -al --color=always --group-directories-first"
     alias ls="exa -a --color=always --group-directories-first"
