@@ -1,12 +1,12 @@
 # docker
 alias dp="docker ps"
 alias di="docker images"
+alias drdi='docker rmi -f $(docker images -f "dangling=true" -q)'
 
 # docker-compose
 alias dcd="docker-compose down"
 alias dcu="docker-compose up"
 alias dcdu="docker-compose down && docker-compose up"
-alias drdi="docker rmi -f $(docker images -f \"dangling=true\" -q)"
 
 # ls
 if [[ -x "$(command -v exa)" ]] && [[ "$USE_EXA" == "yes" ]]; then
