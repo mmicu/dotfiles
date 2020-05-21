@@ -48,4 +48,3 @@ alias c="clear"
 
 # Additional aliases based on the machine
 [ -f "${XDG_CONFIG_HOME}/local-aliasrc" ] && source "${XDG_CONFIG_HOME}/local-aliasrc"
-
