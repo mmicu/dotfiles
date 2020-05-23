@@ -41,6 +41,8 @@ set background=dark
 
 " `nerdtree`
 map <C-n> :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.DS_Store$', '\.git$']
 
 " `undotree`
 nnoremap <leader>u :UndotreeToggle<CR>
