@@ -28,6 +28,8 @@ alias gcm="git commit -m"
 alias gl="git log --pretty=oneline"
 alias gpl="git pull"
 alias gph="git push"
+alias gpg="git push HEAD:refs/for/master"
+alias gpgw="git push HEAD:refs/for/master%wip"
 alias gt="git tag"
 
 # git config
@@ -58,3 +60,4 @@ alias vrc="vim $HOME/.vimrc"
 # Load SSH keys
 ssh-add $HOME/.ssh/id_rsa_fraunhofer &> /dev/null
 ssh-add $HOME/.ssh/id_rsa_github     &> /dev/null
+
