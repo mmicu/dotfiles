@@ -29,10 +29,15 @@ alias gl="git log --pretty=oneline"
 alias gpl="git pull"
 alias gph="git push"
 alias gt="git tag"
+
+# git config
 alias gun="git config user.name"
 alias gue="git config user.email"
 
-# nvim
+# git submodule
+alias gsu="git submodule update --init --recursive"
+
+# vim
 alias v=vim
 alias vi=vim
 
@@ -50,3 +55,6 @@ alias vrc="vim $HOME/.vimrc"
 # Additional aliases based on the machine
 [ -f "${XDG_CONFIG_HOME}/local-aliasrc" ] && source "${XDG_CONFIG_HOME}/local-aliasrc"
 
+# Load SSH keys
+ssh-add $HOME/.ssh/id_rsa_fraunhofer &> /dev/null
+ssh-add $HOME/.ssh/id_rsa_github     &> /dev/null
