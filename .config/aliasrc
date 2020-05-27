@@ -28,8 +28,8 @@ alias gcm="git commit -m"
 alias gl="git log --pretty=oneline"
 alias gpl="git pull"
 alias gph="git push"
-alias gpg="git push HEAD:refs/for/master"
-alias gpgw="git push HEAD:refs/for/master%wip"
+alias gpg="git push origin HEAD:refs/for/master"
+alias gpgw="git push origin HEAD:refs/for/master%wip"
 alias gt="git tag"
 
 # git config
@@ -52,6 +52,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias beep="for i in {0..5}; do echo -ne '\007'; sleep 1; done"
 alias c="clear"
+alias pjson="python3 -m json.tool"
 alias vrc="vim $HOME/.vimrc"
 
 # Additional aliases based on the machine
