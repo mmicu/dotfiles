@@ -40,8 +40,9 @@ alias gue="git config user.email"
 alias gsu="git submodule update --init --recursive"
 
 # vim
-alias v=vim
-alias vi=vim
+alias v="vim"
+alias vi="vim"
+alias vimzen="vim -u NONE"
 
 # tmux
 alias tka="tmux kill-server"
