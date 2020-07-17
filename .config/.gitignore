@@ -3,5 +3,6 @@ local-aliasrc
 
 # Directories
 /filezilla
+/fontforge
 /htop
 /neofetch
