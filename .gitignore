@@ -1,6 +1,11 @@
 # Files
 .DS_Store
 *.bak
+*.log
 
 # Directories
-/.local/share
+/.local
+
+# Temporary
+README.md
+/bin
