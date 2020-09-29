@@ -1,7 +1,11 @@
 # docker
+alias d="docker"
 alias dp="docker ps"
 alias di="docker images"
 alias drdi='docker rmi -f $(docker images -f "dangling=true" -q)'
+alias dka="docker kill $(docker ps -a -q)"
+alias dra="docker rm $(docker ps -a -q)"
+alias dsa="docker stop $(docker ps -a -q)"
 
 # docker-compose
 alias dcd="docker-compose down"
@@ -20,16 +24,19 @@ else
 fi
 
 # git
+alias g="git"
 alias ga="git add"
 alias gb="git branch"
 alias gce="git clone"
 alias gct="git commit"
 alias gcm="git commit -m"
+alias gd="git diff"
 alias gl="git log --pretty=oneline"
 alias gpl="git pull"
 alias gph="git push"
 alias gpg="git push origin HEAD:refs/for/master"
 alias gpgw="git push origin HEAD:refs/for/master%wip"
+alias gs="git status"
 alias gt="git tag"
 
 # git config
@@ -51,6 +58,9 @@ alias rtmux="tmux source $HOME/.config/tmux/tmux.conf"
 # Other
 alias ..='cd ..'
 alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
 alias beep="for i in {0..5}; do echo -ne '\007'; sleep 1; done"
 alias c="clear"
 alias pjson="python3 -m json.tool"
@@ -58,8 +68,3 @@ alias vrc="vim $HOME/.vimrc"
 
 # Additional aliases based on the machine
 [ -f "${XDG_CONFIG_HOME}/local-aliasrc" ] && source "${XDG_CONFIG_HOME}/local-aliasrc"
-
-# Load SSH keys
-ssh-add $HOME/.ssh/id_rsa_fraunhofer &> /dev/null
-ssh-add $HOME/.ssh/id_rsa_github     &> /dev/null
-
