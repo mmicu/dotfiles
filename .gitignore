@@ -4,4 +4,6 @@
 *.log
 
 # Directories
-/.local
+__pycache__
+/.local/lib
+/.local/share
