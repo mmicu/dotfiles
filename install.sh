@@ -3,15 +3,18 @@
 set -e
 
 function install_packages {
-    sudo apt-get update
+    # sudo apt-get update
 
-    sudo apt-get install -y \
-        vim \
-        wget \
-        zsh \
-        openssh-client \
-        git \
-        fonts-powerline
+    # sudo apt-get install -y \
+    #     vim \
+    #     wget \
+    #     zsh \
+    #     openssh-client \
+    #     git \
+    #     fonts-powerline
+
+    # Install Rust
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 
 function create_links {
@@ -36,12 +39,12 @@ function create_links {
 
 function main {
     # Install packages by using apt
-    # install_packages
+    install_packages
 
     # Create symbolic links
-    create_links
+    # create_links
 
-    sudo chmod -R 777 $HOME/.local/bin /etc/wsl.conf /etc/resolv.cof
+    # sudo chmod -R 777 $HOME/.local/bin /etc/wsl.conf /etc/resolv.cof
 }
 
 main

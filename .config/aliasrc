@@ -53,8 +53,9 @@ alias vimzen="vim -u NONE"
 alias vrc="vim $HOME/.vimrc"
 
 # tmux
-alias tka="tmux kill-server"
+alias tmux="tmux -f $HOME/.config/tmux/tmux.conf"
 alias rtmux="tmux source $HOME/.config/tmux/tmux.conf"
+alias tka="tmux kill-server"
 
 # Other
 alias ..='cd ..'
