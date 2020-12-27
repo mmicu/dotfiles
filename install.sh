@@ -3,18 +3,38 @@
 set -e
 
 function install_packages {
-    # sudo apt-get update
+    function install_linux_packages {
+        sudo apt-get update
 
-    # sudo apt-get install -y \
-    #     vim \
-    #     wget \
-    #     zsh \
-    #     openssh-client \
-    #     git \
-    #     fonts-powerline
+        sudo apt-get install -y \
+            vim \
+            wget \
+            zsh \
+            openssh-client \
+            git \
+            fonts-powerline
+    }
 
-    # Install Rust
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    function install_mac_packages {
+        # Install Homebrew
+        [[ ! -x "$(command -v brew)" ]] && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    }
+
+    function install_common_packages {
+        # Install Rust
+        [[ ! -d "$HOME/.cargo/bin" ]] && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    }
+
+    # Install certain packages based on the machine
+    machine="$(uname -s)"
+    case "${machine}" in
+        Linux*)  install_linux_packages;;
+        Darwin*) install_mac_packages;;
+        *)       echo "Unsupported machine \"${machine}\""
+    esac
+
+    # Install common packages
+    install_common_packages
 }
 
 function create_links {
@@ -38,13 +58,13 @@ function create_links {
 }
 
 function main {
-    # Install packages by using apt
+    # Install packages
     install_packages
 
     # Create symbolic links
     # create_links
 
-    # sudo chmod -R 777 $HOME/.local/bin /etc/wsl.conf /etc/resolv.cof
+    # sudo chmod -R 777 $HOME/.local/bin /etc/wsl.conf /etc/resolv.conf
 }
 
 main
