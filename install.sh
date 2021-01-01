@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 function install_packages {
     function install_linux_packages {
         sudo apt-get update
@@ -18,6 +16,9 @@ function install_packages {
     function install_mac_packages {
         # Install Homebrew
         [[ ! -x "$(command -v brew)" ]] && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+        # Install coreutils
+        brew install coreutils
     }
 
     function install_common_packages {
@@ -62,7 +63,7 @@ function main {
     install_packages
 
     # Create symbolic links
-    # create_links
+    create_links
 
     # sudo chmod -R 777 $HOME/.local/bin /etc/wsl.conf /etc/resolv.conf
 }
