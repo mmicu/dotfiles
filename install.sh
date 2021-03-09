@@ -108,6 +108,9 @@ function create_links {
     # Link directories
     create_link $dt_path/.config $HOME
     create_link $dt_path/.local  $HOME
+
+    # Change permission to scripts store in `.local`
+    chmod -R +x $HOME/.local/bin
 }
 
 function create_dirs {
