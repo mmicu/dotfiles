@@ -1,0 +1,10 @@
+# Files
+.DS_Store
+*.bak
+*.log
+
+# Directories
+__pycache__
+/.local/lib
+/.local/share
+/nerd-fonts

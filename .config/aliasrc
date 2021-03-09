@@ -1,0 +1,69 @@
+# docker
+alias d="docker"
+alias dp="docker ps"
+alias di="docker images"
+alias drdi='docker rmi -f $(docker images -f "dangling=true" -q)'
+alias dka='docker kill $(docker ps -a -q)'
+alias dra='docker rm $(docker ps -a -q)'
+alias dsa='docker stop $(docker ps -a -q)'
+
+# docker-compose
+alias dcd="docker-compose down"
+alias dcu="docker-compose up"
+alias dcdu="docker-compose down && docker-compose up"
+
+# ls
+if [[ -x "$(command -v exa)" ]] && [[ "$USE_EXA" == "yes" ]]; then
+    alias l="exa -al --color=always --group-directories-first"
+    alias ll="exa -al --color=always --group-directories-first"
+    alias ls="exa -a --color=always --group-directories-first"
+else
+    alias l="ls -aFGhl"
+    alias ll="ls -aFGhl"
+    alias ls="ls -FGhlS"
+fi
+
+# git
+alias g="git"
+alias ga="git add"
+alias gb="git branch"
+alias gce="git clone"
+alias gct="git commit"
+alias gcm="git commit -m"
+alias gd="git diff"
+alias gl="git log --pretty=oneline --abbrev-commit"
+alias gpl="git pull"
+alias gph="git push"
+alias gpg="git push origin HEAD:refs/for/master"
+alias gpgw="git push origin HEAD:refs/for/master%wip"
+alias gs="git status"
+alias gt="git tag"
+
+# git config
+alias gcu="git config user.name"
+alias gce="git config user.email"
+
+# git submodule
+alias gsu="git submodule update --init --recursive"
+
+# vim
+alias v="vim"
+alias vi="vim"
+alias vimzen="vim -u NONE"
+alias vrc="vim $HOME/.vimrc"
+
+# tmux
+alias tmux="tmux -f $HOME/.config/tmux/tmux.conf"
+alias rtmux="tmux source $HOME/.config/tmux/tmux.conf"
+alias tka="tmux kill-server"
+
+# Other
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+alias pj="python3 -m json.tool"
+
+# Additional aliases based on the machine
+[ -f "${XDG_CONFIG_HOME}/local-aliasrc" ] && source "${XDG_CONFIG_HOME}/local-aliasrc"

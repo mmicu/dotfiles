@@ -1,0 +1,6 @@
+# Files
+*.json
+*.txt
+
+# Directories
+scripts
