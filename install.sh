@@ -62,6 +62,7 @@ function install_packages {
             rm -rf nerd-fonts
         }
 
+        # TODO: permissions issue
         function install_shell_color_scripts {
             # Clone repository
             git clone https://gitlab.com/dwt1/shell-color-scripts.git
@@ -119,7 +120,7 @@ function create_dirs {
 }
 
 function main {
-    # install_packages
+    install_packages
     create_links
     create_dirs
 }
