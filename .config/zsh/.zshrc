@@ -44,3 +44,5 @@ source $ZDOTDIR/themes/multiline.zsh 2> /dev/null
 
 # Load aliases
 [ -f "${XDG_CONFIG_HOME}/aliasrc" ] && source "${XDG_CONFIG_HOME}/aliasrc"
+# Additional aliases based on the machine
+[ -f "${XDG_CONFIG_HOME}/local-aliasrc" ] && source "${XDG_CONFIG_HOME}/local-aliasrc"
