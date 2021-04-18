@@ -22,6 +22,4 @@ export LC_ALL=$LANG
 # $PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/go:$PATH"
-
-# Adds `~/.local/bin` to $PATH
-export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')"
+export PATH="$HOME/.local/bin:$PATH"

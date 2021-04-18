@@ -2,8 +2,10 @@
 
 set -e
 
+INSTALL_NERD_FONTS=""
+
 function install_packages {
-    function install_packages_by_machine {
+    function install_packages_based_on_machine {
         function install_linux_packages {
             sudo apt-get update
 
@@ -20,12 +22,18 @@ function install_packages {
         }
 
         function install_mac_packages {
+            function install_hb_package {
+                local formula="$1"
+
+                brew list "$formula" &> /dev/null || brew install "$formula"
+            }
+
             # Install Homebrew
             [[ ! -x "$(command -v brew)" ]] && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-            brew install coreutils
-            brew install tmux
-            brew install vifm
+            install_hb_package coreutils
+            install_hb_package tmux
+            install_hb_package vifm
         }
 
         # Install certain packages based on the machine
@@ -38,7 +46,12 @@ function install_packages {
     }
 
     function install_common_packages {
-        function install_rust {
+        function install_python_packages {
+            # TODO
+            return
+        }
+
+        function install_rust_packages {
             # Install Rust
             [[ ! -d "$HOME/.cargo/bin" ]] && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
@@ -62,28 +75,34 @@ function install_packages {
             rm -rf nerd-fonts
         }
 
-        # TODO: permissions issue
         function install_shell_color_scripts {
             # Clone repository
-            git clone https://gitlab.com/dwt1/shell-color-scripts.git
+            if [[ ! -d "shell-color-scripts" ]]; then
+                git clone https://gitlab.com/dwt1/shell-color-scripts.git
+            fi
 
             # Install `shell-color-scripts`
             cd shell-color-scripts
-            rm -rf /opt/shell-color-scripts || return 1
+            sudo rm -rf /opt/shell-color-scripts || return 1
             sudo mkdir -p /opt/shell-color-scripts/colorscripts || return 1
             sudo cp -rf colorscripts/* /opt/shell-color-scripts/colorscripts
-            sudo cp colorscript.sh /usr/bin/colorscript
+            sudo cp colorscript.sh ../.local/bin
 
             cd ..
-            rm -rf shell-color-scripts || return 1
+            rm -rf shell-color-scripts
         }
 
-        install_rust
-        install_nerd_fonts
-        # install_shell_color_scripts    # TODO: permissions issue
+        install_python_packages
+        install_rust_packages
+
+        if [[ -n "$INSTALL_NERD_FONTS" ]]; then
+            install_nerd_fonts
+        fi
+
+        # install_shell_color_scripts  # Currently disabled
     }
 
-    install_packages_by_machine
+    install_packages_based_on_machine
     install_common_packages
 }
 
@@ -120,9 +139,19 @@ function create_dirs {
 }
 
 function main {
+    # Parse arguments
+    while [[ "$#" -gt 0 ]]; do
+        case $1 in
+            -f|--fonts) INSTALL_NERD_FONTS=1 ;;
+            *) echo "Unknown parameter passed: $1"; exit 1 ;;
+        esac
+
+        shift
+    done
+
     install_packages
     create_links
     create_dirs
 }
 
-main
+main "$@"
