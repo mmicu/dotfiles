@@ -2,11 +2,13 @@
 
 set -e
 
-INSTALL_NERD_FONTS=""
+INSTALL_NERD_FONTS=
+INSTALL_PYTHON_PACKAGES=
+INSTALL_RUST_PACKAGES=
 
-function install_packages {
-    function install_packages_based_on_machine {
-        function install_linux_packages {
+install_programs() {
+    install_programs_based_on_machine() {
+        install_linux_packages() {
             sudo apt-get update
 
             sudo apt-get install -y \
@@ -21,8 +23,8 @@ function install_packages {
                 zsh
         }
 
-        function install_mac_packages {
-            function install_hb_package {
+        install_mac_packages() {
+            install_hb_package() {
                 local formula="$1"
 
                 brew list "$formula" &> /dev/null || brew install "$formula"
@@ -34,6 +36,7 @@ function install_packages {
             install_hb_package coreutils
             install_hb_package tmux
             install_hb_package vifm
+            install_hb_package shellcheck
         }
 
         # Install certain packages based on the machine
@@ -45,69 +48,52 @@ function install_packages {
         esac
     }
 
-    function install_common_packages {
-        function install_python_packages {
-            # TODO
-            return
-        }
-
-        function install_rust_packages {
-            # Install Rust
-            [[ ! -d "$HOME/.cargo/bin" ]] && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-            # Install some packages
-            cargo install bat
-            cargo install bottom
-            cargo install exa
-        }
-
-        function install_nerd_fonts {
-            if [[ ! -d "nerd-fonts" ]]; then
-                git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git
-            fi
-
-            # Install `FiraCode` and `FiraMono`
-            cd nerd-fonts
-            ./install.sh FiraCode
-            ./install.sh FiraMono
-
-            cd ..
-            rm -rf nerd-fonts
-        }
-
-        function install_shell_color_scripts {
-            # Clone repository
-            if [[ ! -d "shell-color-scripts" ]]; then
-                git clone https://gitlab.com/dwt1/shell-color-scripts.git
-            fi
-
-            # Install `shell-color-scripts`
-            cd shell-color-scripts
-            sudo rm -rf /opt/shell-color-scripts || return 1
-            sudo mkdir -p /opt/shell-color-scripts/colorscripts || return 1
-            sudo cp -rf colorscripts/* /opt/shell-color-scripts/colorscripts
-            sudo cp colorscript.sh ../.local/bin
-
-            cd ..
-            rm -rf shell-color-scripts
-        }
-
-        install_python_packages
-        install_rust_packages
-
-        if [[ -n "$INSTALL_NERD_FONTS" ]]; then
-            install_nerd_fonts
+    install_nerd_fonts() {
+        if [[ ! -d "nerd-fonts" ]]; then
+            git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git
         fi
 
-        # install_shell_color_scripts  # Currently disabled
+        # Install `FiraCode` and `FiraMono`
+        cd nerd-fonts
+        ./install.sh FiraCode
+        ./install.sh FiraMono
+
+        cd ..
+        rm -rf nerd-fonts
     }
 
-    install_packages_based_on_machine
-    install_common_packages
+    install_python_packages() {
+        # TODO
+        return
+    }
+
+    install_rust_packages() {
+        # Install Rust
+        [[ ! -d "$HOME/.cargo/bin" ]] && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+        # Install some packages
+        cargo install bat
+        cargo install bottom
+        cargo install exa
+    }
+
+    install_programs_based_on_machine
+
+    if [[ -n "$INSTALL_NERD_FONTS" ]]; then
+        install_nerd_fonts
+    fi
+
+    if [[ -n "$INSTALL_PYTHON_PACKAGES" ]]; then
+        install_python_packages
+    fi
+
+    if [[ -n "$INSTALL_RUST_PACKAGES" ]]; then
+        install_rust_packages
+    fi
 }
 
-function create_links {
-    function create_link {
+create_links() {
+    create_link() {
         local src="$1"
         local dst="$2"
 
@@ -133,23 +119,25 @@ function create_links {
     chmod -R +x $HOME/.local/bin
 }
 
-function create_dirs {
+create_dirs() {
     # Check `HISTFILE` in `.zshrc`
     mkdir -p $HOME/.cache/zsh
 }
 
-function main {
+main() {
     # Parse arguments
     while [[ "$#" -gt 0 ]]; do
         case $1 in
             -f|--fonts) INSTALL_NERD_FONTS=1 ;;
+            -pp|--python-packages) INSTALL_PYTHON_PACKAGES=1 ;;
+            -rp|--rust-packages) INSTALL_RUST_PACKAGES=1 ;;
             *) echo "Unknown parameter passed: $1"; exit 1 ;;
         esac
 
         shift
     done
 
-    install_packages
+    install_programs
     create_links
     create_dirs
 }

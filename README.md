@@ -3,7 +3,7 @@
 
 ## Installation
 ```
-$ bash install.sh
+bash install.sh
 ```
 
 
@@ -12,8 +12,8 @@ $ bash install.sh
 
 ### SSH keys
 ```
-$ email=...
-$ ssh-keygen -t rsa -b 4096 -C "$email"
+email=...
+ssh-keygen -t rsa -b 4096 -C "$email"
 ```
 
 
@@ -22,13 +22,13 @@ Use `tpm` to install the plugins by using `prefix + I`.
 Then, reload the configuration with:
 
 ```
-$ tmux source $HOME/.config/tmux/tmux.conf
+tmux source $HOME/.config/tmux/tmux.conf
 ```
 
 
 ### vim
 ```
-$ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
@@ -37,11 +37,11 @@ Then, from `vim` runs `:PlugInstall`
 
 ### git
 ```
-$ git_first_name="..."
-$ git_last_name="..."
-$ git_email="..."
-$ git config --global user.name "$git_first_name $git_last_name"
-$ git config --global user.email "$git_email"
+git_first_name="..."
+git_last_name="..."
+git_email="..."
+git config --global user.name "$git_first_name $git_last_name"
+git config --global user.email "$git_email"
 ```
 
 
@@ -49,8 +49,8 @@ $ git config --global user.email "$git_email"
 Run the command below and then restart the system.
 
 ```
-$ new_hostname="..."
-$ sudo scutil --set ComputerName "$new_hostname"
-$ sudo scutil --set LocalHostName "$new_hostname"
-$ sudo scutil --set HostName "$new_hostname"
+new_hostname="..."
+sudo scutil --set ComputerName "$new_hostname"
+sudo scutil --set LocalHostName "$new_hostname"
+sudo scutil --set HostName "$new_hostname"
 ```
