@@ -40,7 +40,8 @@ install_programs() {
         }
 
         # Install certain packages based on the machine
-        local machine="$(uname -s)"
+        local machine
+        machine="$(uname -s)"
         case "${machine}" in
             Linux*)  install_linux_packages;;
             Darwin*) install_mac_packages;;
@@ -105,23 +106,24 @@ create_links() {
         fi
     }
 
-    local dt_path="$(realpath `pwd`)"
+    local dt_path
+    dt_path="$(realpath "$(pwd)")"
 
     # Link files
-    create_link $dt_path/.config/vim/.vimrc $HOME/.vimrc
-    create_link $dt_path/.config/.zprofile  $HOME/.zprofile
+    create_link "$dt_path/.config/vim/.vimrc" "$HOME/.vimrc"
+    create_link "$dt_path/.config/.zprofile"  "$HOME/.zprofile"
 
     # Link directories
-    create_link $dt_path/.config $HOME
-    create_link $dt_path/.local  $HOME
+    create_link "$dt_path/.config" "$HOME"
+    create_link "$dt_path/.local"  "$HOME"
 
     # Change permissions to scripts store in `.local`
-    chmod -R +x $HOME/.local/bin
+    chmod -R +x "$HOME/.local/bin"
 }
 
 create_dirs() {
     # Check `HISTFILE` in `.zshrc`
-    mkdir -p $HOME/.cache/zsh
+    mkdir -p "$HOME/.cache/zsh"
 }
 
 main() {
